@@ -5,7 +5,7 @@ app = FastAPI()
 @app.get("/")
 def main(private_key, public_key, period):
     calendar = GoogleCalendarTools(private_key=private_key, public_key=public_key)
-    events = calendar.get_events(period=period)
+    events = calendar.get_events(period=int(period))
     return events
 
 @app.get("/test")
