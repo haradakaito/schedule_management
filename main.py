@@ -6,7 +6,7 @@ app = FastAPI()
 def main():
     calendar = GoogleCalendarTools()
     events = calendar.get_events(period=60)
-    return events
+    return {events}
 
 @app.get("/test")
 def test():
