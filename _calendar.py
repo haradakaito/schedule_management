@@ -6,15 +6,15 @@ from icalendar import Calendar
 
 class GoogleCalendarTools:
 
-    def __init__(self):
+    def __init__(self, private_key, public_key):
         conf = json.load(open('config.json', 'r', encoding='utf-8'))
         # プライベートカレンダーを取得
-        self.private_ical = conf['PRIVATE_URL']
+        self.private_ical = 'https://calendar.google.com/calendar/ical/haradakaito.shizuoka%40gmail.com/' + private_key + 'basic.ics'
         self.private_ical = requests.get(self.private_ical)
         self.private_ical.raise_for_status()
         self.private_ical = Calendar.from_ical(self.private_ical.text)
         # パブリックカレンダーを取得
-        self.public_ical = conf['PUBLIC_URL']
+        self.public_ical = 'https://calendar.google.com/calendar/ical/minelab.jp_8ssb6bcklf9il488gdf8diknb0%40group.calendar.google.com/' + public_key + 'basic.ics'
         self.public_ical = requests.get(self.public_ical)
         self.public_ical.raise_for_status()
         self.public_ical = Calendar.from_ical(self.public_ical.text)
