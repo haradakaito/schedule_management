@@ -11,7 +11,7 @@
 ## 使用技術
 - AWS（Amazon Web Services）
 - Python
-- GoogleCalendar
+- Google Calendar
 - LINE Notify
 - Koyeb
 
