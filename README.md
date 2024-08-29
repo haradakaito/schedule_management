@@ -6,7 +6,8 @@
 別々のカレンダーを統合して，自身に関係のある予定のみを抽出して，毎日決まった時刻に通知してくれるシステムを作成した．  
 
 ## 全体概要図
-![全体概要図](https://github.com/user-attachments/assets/1a92a28b-c9a8-4152-ae48-ba01b77b8f77)
+![全体概要図](https://github.com/user-attachments/assets/6590c709-086b-4510-838f-5fc8cb4c86a4)
+
 
 ## 使用技術
 - AWS（Amazon Web Services）
