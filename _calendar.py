@@ -37,8 +37,8 @@ class GoogleCalendarTools:
         return public_events
 
     def _ical_parse(self, src, period):
-        today = datetime.now().replace(tzinfo=timezone.utc).date()
-        end   = datetime.now().replace(tzinfo=timezone.utc).date() + timedelta(days=period)
+        today = datetime.now().replace(tzinfo=timezone.utc).date() + timedelta(days=1)
+        end   = datetime.now().replace(tzinfo=timezone.utc).date() + timedelta(days=period+1)
         events = [tmp for tmp in src if today <= self._datetime_to_date(tmp.get('DTSTART').dt) <= end]
         events = sorted(events, key=lambda x: self._datetime_to_date(x.get('DTSTART').dt))
         event_list = []
