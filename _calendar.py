@@ -18,11 +18,11 @@ class GoogleCalendarTools:
         self.public_ical.raise_for_status()
         self.public_ical = Calendar.from_ical(self.public_ical.text)
 
-    def get_events(self, period:int):
+    def get_today_events(self):
         private_events = self._get_private_events()
         public_events = self._get_public_events()
         events = private_events + public_events
-        events = self._ical_parse(src=events, period=period)
+        events = self._ical_parse(src=events)
         return events
 
     # プライベートイベントを取得
@@ -36,10 +36,9 @@ class GoogleCalendarTools:
         public_events = [tmp for tmp in public_events if '原田' in tmp.get('SUMMARY') or 'WR' in tmp.get('SUMMARY')]
         return public_events
 
-    def _ical_parse(self, src, period):
+    def _ical_parse(self, src):
         today = datetime.now().replace(tzinfo=timezone.utc).date()
-        end   = datetime.now().replace(tzinfo=timezone.utc).date() + timedelta(days=period+1)
-        events = [tmp for tmp in src if today < self._datetime_to_date(tmp.get('DTSTART').dt < end)]
+        events = [tmp for tmp in src if self._datetime_to_date(tmp.get('DTSTART').dt).strftime('%Y/%m/%d') == today.strftime('%Y/%m/%d')]
         events = sorted(events, key=lambda x: self._datetime_to_date(x.get('DTSTART').dt))
         event_list = []
         for e in events:

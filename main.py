@@ -3,10 +3,10 @@ from fastapi import FastAPI
 app = FastAPI()
 
 @app.get("/")
-def main(private_key, public_key, period):
+def main(private_key, public_key):
     try:
         calendar = GoogleCalendarTools(private_key=private_key, public_key=public_key)
-        events = calendar.get_events(period=int(period))
+        events = calendar.get_today_events()
         return events
     except Exception as e:
         return {"error": str(e)}
