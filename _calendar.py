@@ -32,7 +32,7 @@ class GoogleCalendarTools:
     # パブリックイベントを取得
     def _get_public_events(self):
         public_events = [tmp for tmp in self.public_ical.walk('VEVENT')]
-        public_events = [tmp for tmp in public_events if '原田' in tmp.get('SUMMARY') or 'WR' in tmp.get('SUMMARY')]
+        public_events = [tmp for tmp in public_events if '原田' in tmp.get('SUMMARY') or 'WR' in tmp.get('SUMMARY') or 'Scrum' in tmp.get('SUMMARY')]
         return public_events
 
     def _ical_parse(self, src):
